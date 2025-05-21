@@ -1,0 +1,10 @@
+
+please refer these notes for reference
+
+created simple tests to build framework from scratch. Focused mainly on building framework
+around the tests.
+
+Base Test and Driver classes:
+1. Driver handles WebDriver lifecycle, BaseTest manages setup/teardown, and test classes contain only test logic.
+2. Base Test constructor defined as protected which  prevents direct instantiation.
+3. Test classes defined as final, preventing inheritance.
