@@ -14,8 +14,9 @@ public final class Driver {
         if(Objects.isNull(getDriver())) {
             WebDriver driver = new ChromeDriver();
             setDriver(driver);
-            getDriver().manage().window().maximize();
-            getDriver().get("https://www.google.co.in/");
+            WebDriver localDriver = getDriver();
+            localDriver.manage().window().maximize();
+            localDriver.get("https://www.google.co.in/");
         }
     }
 
