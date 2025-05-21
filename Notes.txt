@@ -7,7 +7,7 @@ around the tests.
 BaseTest class:
     1. created baseTest class to handle before and after test actions. all test classes
        extend this class.
-    2. made base test as final, base test constructor as protected so that no one can create an object of
+    2. made base test constructor as protected so that no one can create an object of
        this class. except child classes.
     3. added null checks before creating the driver and before quitting the driver.
 2. Made test classes as final and constructor as private such that creation of object, inheritance are not possible.

@@ -7,8 +7,6 @@ import org.testng.annotations.Test;
 
 public final class GoogleHomePageTest extends BaseTest {
 
-	private GoogleHomePageTest() {}
-
 	@Test
 	public void test1() {
 		Driver.driver.findElement(By.name("q")).sendKeys("test", Keys.ENTER);
