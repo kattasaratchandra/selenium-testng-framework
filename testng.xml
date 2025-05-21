@@ -4,6 +4,7 @@
   <test thread-count="5" name="Test">
     <classes>
       <class name="org.myframeworks.test.GoogleHomePageTest"/>
+      <class name="org.myframeworks.test.GoogleLoginPageTest"/>
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->
