@@ -1,6 +1,6 @@
 package org.myframeworks.test;
 
-import org.myframworks.driver.Driver;
+import org.myframeworks.driver.Driver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 

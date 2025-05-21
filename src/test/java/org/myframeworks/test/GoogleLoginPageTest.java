@@ -1,6 +1,6 @@
 package org.myframeworks.test;
 
-import org.myframworks.driver.Driver;
+import org.myframeworks.driver.Driver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.testng.annotations.Test;
