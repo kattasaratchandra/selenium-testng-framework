@@ -11,13 +11,13 @@ import org.testng.annotations.BeforeMethod;
  * 3. code duplication is avoided by using the BaseTest class.
  */
 
-public class BaseTest {
+public abstract class BaseTest {
 
     protected BaseTest() {}
 
     @BeforeMethod
     public void initDriver() {
-            Driver.setDriver();
+            Driver.initDriver();
     }
 
     @AfterMethod

@@ -5,22 +5,24 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.util.Objects;
 
-public class Driver {
+import static org.myframeworks.driver.DriverManager.*;
 
-    public static WebDriver driver;
+public final class Driver {
+    private Driver() {}
 
-    public static void setDriver() {
-        if(Objects.isNull(driver)) {
-            driver = new ChromeDriver();
-            driver.manage().window().maximize();
-            driver.get("https://www.google.co.in/");
+    public static void initDriver() {
+        if(Objects.isNull(getDriver())) {
+            WebDriver driver = new ChromeDriver();
+            setDriver(driver);
+            getDriver().manage().window().maximize();
+            getDriver().get("https://www.google.co.in/");
         }
     }
 
     public static void quitDriver() {
-        if (Objects.nonNull(driver)) {
-            driver.quit();
-            driver = null;
+        if (Objects.nonNull(getDriver())) {
+            getDriver().quit();
+            unload();
         }
     }
 }
