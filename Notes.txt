@@ -1,5 +1,5 @@
 
-please refer this notes for reference
+please refer these notes for reference
 
 1. created simple tests to build framework from scratch. Focused mainly on building framework
 around the tests.
