@@ -1,5 +1,6 @@
 package org.myframeworks.pages;
 
+import org.myframeworks.enums.WaitStrategy;
 import org.openqa.selenium.By;
 
 
@@ -11,16 +12,16 @@ import org.openqa.selenium.By;
 public class OrangeHRMHomePage extends BasePage {
 
     private final By userDropdownIcon = By.xpath("//i[contains(@class, 'userdropdown-icon')]");
-    private final By logoutButton = By.xpath("//a[text()='Logout']");
+    private final By logoutLink = By.xpath("//a[text()='Logout']");
 
 
     public OrangeHRMHomePage clickUserDropdownIcon() {
-        clickElement(userDropdownIcon);
+        clickElement(userDropdownIcon, WaitStrategy.CLICKABLE);
         return this;
     }
 
     public OrangeHRMLoginPage clickLogoutButton() {
-        clickElement(logoutButton);
+        clickElement(logoutLink, WaitStrategy.CLICKABLE);
         return new OrangeHRMLoginPage();
     }
 

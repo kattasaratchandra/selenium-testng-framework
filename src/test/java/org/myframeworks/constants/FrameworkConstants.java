@@ -16,9 +16,14 @@ public final class FrameworkConstants {
 
     private static final String RESOURCE_PATH = System.getProperty("user.dir") + "/src/test/resources/";
     private static final String CONFIG_FILE_PATH = RESOURCE_PATH + "config/config.properties";
+    private static final int EXPLICIT_WAIT = 10;
 
 
     public static String getConfigFilePath() {
         return CONFIG_FILE_PATH;
+    }
+
+    public static int getExplicitWait() {
+        return EXPLICIT_WAIT;
     }
 }

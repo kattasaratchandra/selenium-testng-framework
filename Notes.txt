@@ -26,3 +26,12 @@ ReadPropertyFile.java:
   - Throws clear errors if a requested setting does not exist.
   - Uses logging for better traceability and debugging.
 
+ExplicitWaitFactory.java:
+ - Centralizes explicit wait logic for different WaitStrategy types.
+ - Improves code reuse and reliability by abstracting wait conditions.
+ - Throws an exception for invalid strategies, ensuring robustness.
+
+WaitStrategy.java & ConfigProperties.java:
+ - Defines enums for wait strategies and configuration properties.
+ - Improves type safety and code clarity by using enums instead of strings.
+ - Makes the code more maintainable and less error-prone.
