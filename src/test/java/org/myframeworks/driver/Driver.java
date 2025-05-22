@@ -1,5 +1,6 @@
 package org.myframeworks.driver;
 
+import org.myframeworks.utils.ReadPropertyFile;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
@@ -16,7 +17,7 @@ public final class Driver {
             setDriver(driver);
             WebDriver localDriver = getDriver();
             localDriver.manage().window().maximize();
-            localDriver.get("https://www.google.co.in/");
+            localDriver.get(ReadPropertyFile.getProperty("url"));
         }
     }
 

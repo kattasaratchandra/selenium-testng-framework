@@ -4,6 +4,7 @@ import org.myframeworks.driver.Driver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
+
 /**
  * 1. BaseTest class to initialize and quit the WebDriver before and after each test method.
  * This class is intended to be extended by other test classes.
@@ -16,12 +17,12 @@ public abstract class BaseTest {
     protected BaseTest() {}
 
     @BeforeMethod
-    public void initDriver() {
+    protected void initDriver() {
             Driver.initDriver();
     }
 
     @AfterMethod
-    public void tearDown() {
+    protected void tearDown() {
             Driver.quitDriver();
     }
 }

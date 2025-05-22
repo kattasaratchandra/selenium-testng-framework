@@ -13,3 +13,16 @@ prevent inheritance and enforce immutability.
 that extend `BaseTest` and contain only test logic.
 - Configured `testng.xml` for parallel method execution to leverage thread-local
 WebDriver instances.
+
+FrameworkConstants.java
+  - Stores all important file paths (like the config file) as constants in one place.
+  - Marked as `final` to prevent inheritance, so no other class can extend it.
+  - Has a private constructor to prevent instantiation, ensuring it is only used as a utility class.
+  - This design enforces immutability and consistent usage of constants across the framework.
+
+ReadPropertyFile.java:
+  - Loads all settings from the config file once at startup.
+  - Stores settings in a fast-access map for quick retrieval.
+  - Throws clear errors if a requested setting does not exist.
+  - Uses logging for better traceability and debugging.
+

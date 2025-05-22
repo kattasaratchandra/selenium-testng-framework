@@ -13,4 +13,8 @@ public final class GoogleLoginPageTest extends BaseTest {
         getDriver().findElement(By.name("q")).sendKeys("test", Keys.ENTER);
     }
 
+    @Test
+    public void test2() {
+        getDriver().findElement(By.name("q")).sendKeys("automation", Keys.ENTER);
+    }
 }
