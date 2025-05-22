@@ -13,6 +13,9 @@ import static org.myframeworks.driver.DriverManager.getDriver;
 
 public class ExplicitWaitFactory {
 
+    private ExplicitWaitFactory() {
+        // Private constructor to prevent instantiation
+    }
 
     public static WebElement waitForElement(By by, WaitStrategy waitStrategy){
         switch (waitStrategy) {
