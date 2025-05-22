@@ -1,0 +1,28 @@
+package org.myframeworks.pages;
+
+import org.openqa.selenium.By;
+
+
+/**
+ * 1. assertions should not be done in page classes.
+ * 2. page methods either return the page object itself or the next page object.
+ */
+
+public class OrangeHRMHomePage extends BasePage {
+
+    private final By userDropdownIcon = By.xpath("//i[contains(@class, 'userdropdown-icon')]");
+    private final By logoutButton = By.xpath("//a[text()='Logout']");
+
+
+    public OrangeHRMHomePage clickUserDropdownIcon() {
+        clickElement(userDropdownIcon);
+        return this;
+    }
+
+    public OrangeHRMLoginPage clickLogoutButton() {
+        clickElement(logoutButton);
+        return new OrangeHRMLoginPage();
+    }
+
+
+}

@@ -3,8 +3,7 @@
 <suite name="Suite">
   <test thread-count="5" name="Test" parallel="methods">
     <classes>
-      <class name="org.myframeworks.test.GoogleHomePageTest"/>
-      <class name="org.myframeworks.test.GoogleLoginPageTest"/>
+      <class name="org.myframeworks.test.OrangeHRMTests"/>
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->
