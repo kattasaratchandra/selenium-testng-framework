@@ -35,3 +35,12 @@ WaitStrategy.java & ConfigProperties.java:
  - Defines enums for wait strategies and configuration properties.
  - Improves type safety and code clarity by using enums instead of strings.
  - Makes the code more maintainable and less error-prone.
+
+DataProviderTest.java demonstrates multiple ways to provide test data to TestNG test methods using
+the @DataProvider annotation:
+ - It includes a method-specific data provider (dataProviderMethod) that supplies hardcoded data
+ based on the test method name, allowing different parameter sets for different tests.
+ - It features an Excel-based data provider (excelDataProvider) that reads tabular test
+ data from an external Excel file and supplies it as a two-dimensional array, making it easy to manage and update test data externally.
+ - It also provides a map-based Excel data provider (excelDataProviderMap) that returns
+ each row as a HashMap, enabling key-value access to test data for improved readability and flexibility in test methods.
