@@ -1,15 +1,19 @@
 package org.myframeworks.dataprovider;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.myframeworks.constants.FrameworkConstants;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.lang.reflect.Method;
 import java.util.HashMap;
+import java.util.Properties;
 
 /**
  * DataProviderTest demonstrates how to use a single TestNG @DataProvider method
@@ -58,7 +62,7 @@ public class DataProviderTest {
         }
         // Return an empty array for unknown method names. Log a warning to help catch misconfigurations early.
         System.out.println("Warning: No data provided for method: " + m.getName());
-        return new Object[0][];
+        throw new IllegalArgumentException("No data provided for method: " + m.getName());
     }
 
     /**
@@ -111,6 +115,9 @@ public class DataProviderTest {
      *
      *  @return Object[] where each element is a HashMap<String, String> representing a row of test data
      * @throws IOException if the Excel file cannot be read
+     * using hashmap to store the data from excel file helps in scenarios where:
+     * 1. The number of columns is not fixed.
+     * 2. we can get the data by column name instead of index.
      */
     @DataProvider(name = "excelDataProviderMap")
     public Object[] excelDataProviderMap() throws IOException {
@@ -140,6 +147,51 @@ public class DataProviderTest {
         System.out.println(data.get("password"));
         System.out.println(data.get("firstname"));
         System.out.println(data.get("lastname"));
+    }
+
+    // creating another dataprovider where test data is from jason file. we convert json
+    // to hashmap using jackson databind library.
+
+    @DataProvider(name = "jsonDataProvider")
+    public Object[] jsonDataProvider() throws IOException {
+
+        HashMap<String, Object> data = new ObjectMapper().readValue(new File(FrameworkConstants.getTestDataJson()), new TypeReference<HashMap<String, Object>>() {
+        });
+        return  new Object[] {data};
+    }
+
+    @Test(dataProvider = "jsonDataProvider")
+    public void testMethodFromJson(HashMap<String, Object> data) {
+        System.out.println(data.get("username"));
+        System.out.println(data.get("password"));
+        System.out.println(data.get("email"));
+        System.out.println(data.get("age"));
+    }
+
+
+    /**
+     * Data provider that reads test data from a properties file and returns it as a HashMap.
+     * Uses java.util.Properties to load the file and convert it to a map for test consumption.
+     */
+    @DataProvider(name = "propertiesDataProvider")
+    public Object[] propertiesDataProvider() throws IOException {
+        try(FileInputStream fileInputStream = new FileInputStream(FrameworkConstants.getTestDataProperties())) {
+            Properties properties = new Properties();
+            properties.load(fileInputStream);
+            HashMap<String, String> data = new HashMap<>();
+            for (String key : properties.stringPropertyNames()) {
+                data.put(key, properties.getProperty(key));
+            }
+            return new Object[]{data};
+        }
+    }
+
+    @Test(dataProvider = "propertiesDataProvider")
+    public void testMethodFromProperties(HashMap<String, String> data) {
+        System.out.println(data.get("email"));
+        System.out.println(data.get("age"));
+        System.out.println(data.get("username"));
+        System.out.println(data.get("password"));
     }
 }
 

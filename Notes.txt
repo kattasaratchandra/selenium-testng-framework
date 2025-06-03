@@ -44,3 +44,7 @@ the @DataProvider annotation:
  data from an external Excel file and supplies it as a two-dimensional array, making it easy to manage and update test data externally.
  - It also provides a map-based Excel data provider (excelDataProviderMap) that returns
  each row as a HashMap, enabling key-value access to test data for improved readability and flexibility in test methods.
+ - Includes a JSON-based data provider (jsonDataProvider) that reads test data from a JSON file and supplies it as a HashMap,
+ allowing structured and flexible test data management.
+ - Provides a properties file data provider (propertiesDataProvider) that loads key-value pairs from a .properties file into
+ a HashMap, supporting simple configuration-driven tests.
