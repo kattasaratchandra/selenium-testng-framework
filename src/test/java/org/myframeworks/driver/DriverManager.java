@@ -19,11 +19,11 @@ public final class DriverManager {
         return threadLocalDriver.get();
     }
 
-    public static void setDriver(WebDriver driver) {
+    static void setDriver(WebDriver driver) {
         threadLocalDriver.set(driver);
     }
 
-    public static void unload() {
+    static void unload() {
         threadLocalDriver.remove();
     }
 

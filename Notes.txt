@@ -48,3 +48,14 @@ the @DataProvider annotation:
  allowing structured and flexible test data management.
  - Provides a properties file data provider (propertiesDataProvider) that loads key-value pairs from a .properties file into
  a HashMap, supporting simple configuration-driven tests.
+
+ Listeners:
+ - Listeners (Listeners.java): Implements ITestListener and ISuiteListener to log test and suite events (start, success,
+   failure, finish). Useful for custom logging, reporting, or actions on test events.
+ - IMethodInterceptor (IMethodInterceptor.java): Implements IMethodInterceptor to control which test methods are run
+   and how many times. Used to modify the test execution order or repeat specific tests.
+ - AnnotationTransformers (AnnotationTransformers.java): Implements IAnnotationTransformer to modify test
+   annotations at runtime. Here, it sets a retry analyzer for specific test methods, enabling automatic retries
+   on failure.
+ - TestRetry (TestRetry.java): Implements IRetryAnalyzer to define retry logic for failed tests. Specifies how
+   many times a failed test should be retried before marking it as failed. Used in combination with AnnotationTransformers.

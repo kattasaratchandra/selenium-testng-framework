@@ -16,10 +16,12 @@ public final class FrameworkConstants {
 
     private static final String RESOURCE_PATH = System.getProperty("user.dir") + "/src/test/resources/";
     private static final String CONFIG_FILE_PATH = RESOURCE_PATH + "config/config.properties";
+    private static final String JSON_CONFIG_FILE_PATH = RESOURCE_PATH + "config/config.json";
     private static final int EXPLICIT_WAIT = 10;
     private static final String TEST_DATA = RESOURCE_PATH + "testdata/testdata.xlsx";
     private static final String TEST_DATA_JSON = RESOURCE_PATH + "testdata/testData.json";
     private static final String TEST_DATA_PROPERTIES = RESOURCE_PATH + "testdata/testData.properties";
+    private static final String TEST_DATA_CSV = RESOURCE_PATH + "testdata/testData.csv";
 
     public static String getConfigFilePath() {
         return CONFIG_FILE_PATH;
@@ -39,5 +41,12 @@ public final class FrameworkConstants {
 
     public static String getTestDataProperties() {
         return TEST_DATA_PROPERTIES;
+    }
+
+    public static String getJsonConfigFilePath() {
+        return JSON_CONFIG_FILE_PATH;
+    }
+    public static String getTestDataCsv() {
+        return TEST_DATA_CSV;
     }
 }
