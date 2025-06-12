@@ -19,7 +19,7 @@ public class IMethodInterceptor implements org.testng.IMethodInterceptor {
             }
         }
 
-        return methods;
+        return newMethods;
 
     }
 }

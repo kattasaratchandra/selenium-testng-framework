@@ -15,7 +15,7 @@ public final class ReadJsonFileUtils {
         // Private constructor to prevent instantiation
     }
 
-    private static HashMap<String, String> jsonMap = new HashMap<>();
+    private static final HashMap<String, String> jsonMap;
 
     static {
         try {
