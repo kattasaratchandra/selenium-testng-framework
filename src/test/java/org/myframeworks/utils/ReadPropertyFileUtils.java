@@ -16,16 +16,16 @@ import java.util.logging.Logger;
  * using the provided static methods.
  * </p>
  */
-public final class ReadPropertyFile {
+public final class ReadPropertyFileUtils {
     /**
      * Logger for logging information and errors.
      */
-    private static final Logger LOGGER = Logger.getLogger(ReadPropertyFile.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(ReadPropertyFileUtils.class.getName());
 
     /**
      * Private constructor to prevent instantiation.
      */
-    private ReadPropertyFile() {
+    private ReadPropertyFileUtils() {
     }
 
     /**

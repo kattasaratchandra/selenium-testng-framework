@@ -8,11 +8,11 @@ import org.myframeworks.constants.FrameworkConstants;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
+import java.io.*;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Properties;
 
 /**
@@ -192,6 +192,36 @@ public class DataProviderTest {
         System.out.println(data.get("age"));
         System.out.println(data.get("username"));
         System.out.println(data.get("password"));
+    }
+
+    /* creating another dataprovider where test data is from csv file. converting the csv file
+    to hashmap for test consumption.
+     */
+    @DataProvider(name = "csvDataProviderMap")
+    public Object[] csvDataProviderMap() throws IOException {
+        List<HashMap<String, String>> dataList = new ArrayList<>();
+        try (BufferedReader br = new BufferedReader(new FileReader(FrameworkConstants.getTestDataCsv()))) {
+            String headerLine = br.readLine();
+            String[] headers = headerLine.split(",");
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] values = line.split(",");
+                HashMap<String, String> map = new HashMap<>();
+                for (int i = 0; i < headers.length && i < values.length; i++) {
+                    map.put(headers[i], values[i]);
+                }
+                dataList.add(map);
+            }
+        }
+        return dataList.toArray();
+    }
+
+    @Test(dataProvider = "csvDataProviderMap")
+    public void testMethodFromCsvMap(HashMap<String, String> data) {
+        System.out.println("[CSV] username: " + data.get("username"));
+        System.out.println("[CSV] password: " + data.get("password"));
+        System.out.println("[CSV] firstname: " + data.get("firstname"));
+        System.out.println("[CSV] lastname: " + data.get("lastname"));
     }
 }
 

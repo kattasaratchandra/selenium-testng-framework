@@ -1,5 +1,6 @@
 package org.myframeworks.enums;
 
 public enum ConfigProperties {
-    URL
+    URL,
+    BROWSER
 }
