@@ -1,5 +1,7 @@
 package org.myframeworks.constants;
 
+import org.myframeworks.utils.ReadPropertyFileUtils;
+
 /**
  * Utility class that holds constant values used throughout the framework.
  * <p>
@@ -17,11 +19,33 @@ public final class FrameworkConstants {
     private static final String RESOURCE_PATH = System.getProperty("user.dir") + "/src/test/resources/";
     private static final String CONFIG_FILE_PATH = RESOURCE_PATH + "config/config.properties";
     private static final String JSON_CONFIG_FILE_PATH = RESOURCE_PATH + "config/config.json";
-    private static final int EXPLICIT_WAIT = 10;
+    private static final int EXPLICIT_WAIT = 25;
     private static final String TEST_DATA = RESOURCE_PATH + "testdata/testdata.xlsx";
     private static final String TEST_DATA_JSON = RESOURCE_PATH + "testdata/testData.json";
     private static final String TEST_DATA_PROPERTIES = RESOURCE_PATH + "testdata/testData.properties";
     private static final String TEST_DATA_CSV = RESOURCE_PATH + "testdata/testData.csv";
+    private static final String EXTENT_REPORTS_FOLDER_PATH = System.getProperty("user.dir") + "/Extent-output/";
+    private static String extentReportPath = "";
+
+
+    public static String getExtentReportPath() {
+        if (extentReportPath.isEmpty()) {
+            extentReportPath = createExtentReport();
+        }
+        return extentReportPath;
+    }
+
+    private static String createExtentReport(){
+        if (ReadPropertyFileUtils.getProperty("overrideReports").equalsIgnoreCase("no")){
+            extentReportPath = EXTENT_REPORTS_FOLDER_PATH + "ExtentReport.html";
+        }
+        else {
+            extentReportPath = EXTENT_REPORTS_FOLDER_PATH + "ExtentReport_" + System.currentTimeMillis() + ".html";
+        }
+        return extentReportPath;
+    }
+
+
 
     public static String getConfigFilePath() {
         return CONFIG_FILE_PATH;

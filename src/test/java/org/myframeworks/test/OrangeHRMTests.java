@@ -27,7 +27,6 @@ public final class OrangeHRMTests extends BaseTest{
     @Test(dataProvider = "testData")
     public void loginLogoutTest(HashMap<String, String> testData) {
         OrangeHRMLoginPage loginPage = new OrangeHRMLoginPage();
-
         String actualTitle = loginPage.enterUsername(testData.get("username"))
                 .enterPassword(testData.get("password"))
                 .clickLoginButton()
