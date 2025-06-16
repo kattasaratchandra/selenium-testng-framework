@@ -59,3 +59,39 @@ the @DataProvider annotation:
    on failure.
  - TestRetry (TestRetry.java): Implements IRetryAnalyzer to define retry logic for failed tests. Specifies how
    many times a failed test should be retried before marking it as failed. Used in combination with AnnotationTransformers.
+
+ Extent reports:
+ - for extent reports we have to do some configuration before use, please check extentreportsDemo class.
+ - we create two methods init and flush for creating and flushing the extent instance. we use this methods in listeners
+   to create and flush the extent instance.
+ - To avoid parallel execution issues we create extent test instance as thread local.
+ - similar to driver how we perform null checks before creating,  we create for extent instance as well. if called twice from anywhere
+   in test methods it helps.
+ - created extent logger and used it everywhere for more readability instead of extent test. and keep methods to just
+   pass, fail and skip
+ - we keep reporting related independent of tests. such that we log in reusable actions methods instead of in test
+   methods.
+ - using listeners we config extent report, we use extent logger class method to log actions, we keep all this
+   independent of tests
+
+ Extent reports path:
+- we created dynamic report file name using the current date and time, ensuring that each test run generates a
+    unique report file.
+- getExtentReportPath() in FrameworkConstants.java provides the file path where the Extent report will be generated.
+   It uses the overrideReports property from the config file to decide whether to overwrite the report file or create
+   a new one with a timestamp for each run.
+
+
+ Extent reports screenshots using base64 image encoding:
+- created overloaded methods in ExtentLogger class to log screenshots in the report.
+- These methods accept a base64 encoded string of the screenshot image, allowing
+  for easy embedding of images in the report.
+- Overloaded methods like pass(String message, Boolean isScreenshotNeeded) allow logging
+  with or without screenshots.
+- If isScreenshotNeeded is true and the corresponding config property
+  (e.g., passedEachStepsScreenshots) is set to yes in config.properties, a screenshot is
+  captured and attached to the report.
+- If either is false/not yes, only the message is logged, no screenshot.
+- Screenshots are captured as base64 strings for easy embedding in the Extent report.
+- This approach gives fine-grained control over when screenshots are included, based on both
+  runtime logic and configuration.

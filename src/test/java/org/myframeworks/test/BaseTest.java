@@ -16,6 +16,7 @@ public abstract class BaseTest {
 
     protected BaseTest() {}
 
+
     @BeforeMethod
     protected void initDriver() {
             Driver.initDriver();

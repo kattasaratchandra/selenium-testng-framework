@@ -16,12 +16,12 @@ public class OrangeHRMHomePage extends BasePage {
 
 
     public OrangeHRMHomePage clickUserDropdownIcon() {
-        clickElement(userDropdownIcon, WaitStrategy.CLICKABLE);
+        clickElement(userDropdownIcon, WaitStrategy.CLICKABLE, "User Dropdown Icon");
         return this;
     }
 
     public OrangeHRMLoginPage clickLogoutButton() {
-        clickElement(logoutLink, WaitStrategy.CLICKABLE);
+        clickElement(logoutLink, WaitStrategy.CLICKABLE, "Logout Link");
         return new OrangeHRMLoginPage();
     }
 
