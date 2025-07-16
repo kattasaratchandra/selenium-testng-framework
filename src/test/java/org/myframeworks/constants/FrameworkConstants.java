@@ -1,5 +1,6 @@
 package org.myframeworks.constants;
 
+import org.myframeworks.enums.ConfigProperties;
 import org.myframeworks.utils.ReadPropertyFileUtils;
 
 /**
@@ -19,7 +20,6 @@ public final class FrameworkConstants {
     private static final String RESOURCE_PATH = System.getProperty("user.dir") + "/src/test/resources/";
     private static final String CONFIG_FILE_PATH = RESOURCE_PATH + "config/config.properties";
     private static final String JSON_CONFIG_FILE_PATH = RESOURCE_PATH + "config/config.json";
-    private static final int EXPLICIT_WAIT = 25;
     private static final String TEST_DATA = RESOURCE_PATH + "testdata/testdata.xlsx";
     private static final String TEST_DATA_JSON = RESOURCE_PATH + "testdata/testData.json";
     private static final String TEST_DATA_PROPERTIES = RESOURCE_PATH + "testdata/testData.properties";
@@ -36,7 +36,7 @@ public final class FrameworkConstants {
     }
 
     private static String createExtentReport(){
-        if (ReadPropertyFileUtils.getProperty("overrideReports").equalsIgnoreCase("no")){
+        if (ReadPropertyFileUtils.getProperty(ConfigProperties.OVERRIDE_REPORTS.name().toLowerCase()).equalsIgnoreCase("no")){
             extentReportPath = EXTENT_REPORTS_FOLDER_PATH + "ExtentReport.html";
         }
         else {
@@ -52,9 +52,9 @@ public final class FrameworkConstants {
     }
 
     public static int getExplicitWait() {
-        return EXPLICIT_WAIT;
+        String waitValue = ReadPropertyFileUtils.getProperty(ConfigProperties.WAIT.name());
+        return Integer.parseInt(waitValue);
     }
-
     public static String getTestData() {
         return TEST_DATA;
     }
