@@ -6,21 +6,26 @@ import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
 
+import java.util.Arrays;
+
 public class listeners implements ITestListener{
     @Override
     public void onTestStart(ITestResult result) {
         ExtentReport.createTest(result.getMethod().getMethodName());
+        ExtentLogger.description(result.getMethod().getDescription());
 
     }
 
     @Override
     public void onTestSuccess(ITestResult result) {
-        ExtentLogger.pass(result.getMethod().getMethodName() + ": " + "passed"  );
+        ExtentLogger.pass(result.getMethod().getMethodName() + ": " + "passed" , true );
     }
 
     @Override
     public void onTestFailure(ITestResult result) {
-        ExtentLogger.fail(result.getMethod().getMethodName() + ": " + "failed", true );
+        ExtentLogger.fail(result.getMethod().getMethodName() + " is failed" ,  true);
+        ExtentLogger.fail(result.getThrowable().toString());
+        ExtentLogger.fail(Arrays.toString(result.getThrowable().getStackTrace()));
     }
 
     @Override

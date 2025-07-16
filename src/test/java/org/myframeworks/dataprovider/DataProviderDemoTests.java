@@ -23,7 +23,7 @@ import java.util.Properties;
  * The dataProviderMethod inspects the test method name and returns the appropriate
  * data structure for each test, enabling flexible and reusable data-driven tests.
  */
-public class DataProviderTest {
+public class DataProviderDemoTests {
 
     @Test(dataProvider = "dataProviderMethod")
     public void testMethod1(String data1, String data2) {

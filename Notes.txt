@@ -45,15 +45,17 @@ the @DataProvider annotation:
  - It also provides a map-based Excel data provider (excelDataProviderMap) that returns
  each row as a HashMap, enabling key-value access to test data for improved readability and flexibility in test methods.
  - Includes a JSON-based data provider (jsonDataProvider) that reads test data from a JSON file and supplies it as a HashMap,
- allowing structured and flexible test data management.
+   allowing structured and flexible test data management.
  - Provides a properties file data provider (propertiesDataProvider) that loads key-value pairs from a .properties file into
- a HashMap, supporting simple configuration-driven tests.
+   a HashMap, supporting simple configuration-driven tests.
 
  Listeners:
  - Listeners (Listeners.java): Implements ITestListener and ISuiteListener to log test and suite events (start, success,
    failure, finish). Useful for custom logging, reporting, or actions on test events.
  - IMethodInterceptor (IMethodInterceptor.java): Implements IMethodInterceptor to control which test methods are run
-   and how many times. Used to modify the test execution order or repeat specific tests.
+   and how many times. Used to modify the test execution order or repeat specific tests in run time.
+ - IMethodInterceptor purpose is to filter or modify the list of test methods before they are executed.
+   It can be used to skip certain tests, change their order, or repeat them based on specific conditions.
  - AnnotationTransformers (AnnotationTransformers.java): Implements IAnnotationTransformer to modify test
    annotations at runtime. Here, it sets a retry analyzer for specific test methods, enabling automatic retries
    on failure.
@@ -95,3 +97,21 @@ the @DataProvider annotation:
 - Screenshots are captured as base64 strings for easy embedding in the Extent report.
 - This approach gives fine-grained control over when screenshots are included, based on both
   runtime logic and configuration.
+
+ Adding Failed tests Exceptions to Extent Report:
+ - Extent Logger class has method fail. we send message as argument to this method. this message we
+   can use to log exception and stack trace of the failed test.
+ - using Result.getThrowable().toString method able to add the exception message to the extent report.
+ - using result.getThrowable().getStackTrace() method able to add the stack trace to the extent report.
+ - used extent logger fail method in listeners on test failure method, to log the exception and stack trace.
+
+IMethodInterceptor:
+- IMethodInterceptor is used to control the execution of test methods in TestNG. these methods are stored in
+  a list, and we can modify this list before the test methods are executed, using override method
+- It allows us to filter, reorder, or repeat test methods dynamically at runtime.
+
+IAnnotation transformer and IRetry analyzer:
+- IAnnotationTransformer is used to modify test annotations at runtime. It allows us to set a retry analyzer
+  for specific test methods, enabling automatic retries on failure.
+- IRetryAnalyzer is used to define retry logic for failed tests. It specifies how many times a failed
+  test should be retried before marking it as failed.
