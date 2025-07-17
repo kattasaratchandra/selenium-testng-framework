@@ -2,6 +2,7 @@ package org.myframeworks.test;
 
 import org.assertj.core.api.Assertions;
 import org.myframeworks.annotations.FrameWorkAnnotation;
+import org.myframeworks.enums.CategoryType;
 import org.myframeworks.pages.OrangeHRMLoginPage;
 import org.testng.annotations.Test;
 
@@ -19,7 +20,7 @@ public final class OrangeHRMTests extends BaseTest{
      *
      * @param testData HashMap containing test data with keys 'username' and 'password'
      */
-    @FrameWorkAnnotation(author = { "sharath"}, category = {"smoke"})
+    @FrameWorkAnnotation(author = {"sharath"}, category = {CategoryType.SMOKE})
     @Test()
     public void loginLogoutTest(HashMap<String, String> testData) {
         OrangeHRMLoginPage loginPage = new OrangeHRMLoginPage();
@@ -35,7 +36,7 @@ public final class OrangeHRMTests extends BaseTest{
                 .isNotNull();
     }
 
-    @FrameWorkAnnotation(author = { "sharath"}, category = {"smoke"})
+    @FrameWorkAnnotation(author = { "sharath"}, category = {CategoryType.SMOKE})
     @Test()
     public void homePageTitleTest(HashMap<String, String> testData) {
         OrangeHRMLoginPage loginPage = new OrangeHRMLoginPage();
