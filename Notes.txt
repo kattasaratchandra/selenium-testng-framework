@@ -115,3 +115,11 @@ IAnnotation transformer and IRetry analyzer:
   for specific test methods, enabling automatic retries on failure.
 - IRetryAnalyzer is used to define retry logic for failed tests. It specifies how many times a failed
   test should be retried before marking it as failed.
+
+ Injection of data provider data to before method:
+- we have Object[] which contains the list of test data. we use this as argument in before method.
+- since the test data is a hashmap use get method we can retrieve the value and use it in the before method.
+- In the framework to get browser name from the Excel, have used above injection way.
+
+Custom Annotations:
+- created custom annotations for category and author.

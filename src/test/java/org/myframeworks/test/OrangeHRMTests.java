@@ -1,9 +1,8 @@
 package org.myframeworks.test;
 
 import org.assertj.core.api.Assertions;
+import org.myframeworks.annotations.FrameWorkAnnotation;
 import org.myframeworks.pages.OrangeHRMLoginPage;
-import org.myframeworks.utils.DataProviderUtils;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.util.HashMap;
@@ -20,7 +19,8 @@ public final class OrangeHRMTests extends BaseTest{
      *
      * @param testData HashMap containing test data with keys 'username' and 'password'
      */
-    @Test(dataProvider = "testData", dataProviderClass = DataProviderUtils.class)
+    @FrameWorkAnnotation(author = { "sharath"}, category = {"smoke"})
+    @Test()
     public void loginLogoutTest(HashMap<String, String> testData) {
         OrangeHRMLoginPage loginPage = new OrangeHRMLoginPage();
         String actualTitle = loginPage.enterUsername(testData.get("username"))
@@ -35,18 +35,17 @@ public final class OrangeHRMTests extends BaseTest{
                 .isNotNull();
     }
 
-
-    @Test
-    public void homePageTitleTest() {
+    @FrameWorkAnnotation(author = { "sharath"}, category = {"smoke"})
+    @Test()
+    public void homePageTitleTest(HashMap<String, String> testData) {
         OrangeHRMLoginPage loginPage = new OrangeHRMLoginPage();
-        String actualTitle = loginPage.enterUsername("admin123")
-                .enterPassword("Admin")
+        String actualTitle = loginPage.enterUsername(testData.get("username"))
+                .enterPassword(testData.get("password"))
                 .clickLoginButton()
                 .getPageTitle();
         String expectedTitle = "OrangeHRM";
         Assertions.assertThat(actualTitle)
                 .isEqualTo(expectedTitle)
                 .isNotNull();
-        Assert.fail();
     }
 }

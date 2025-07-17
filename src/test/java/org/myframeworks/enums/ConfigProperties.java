@@ -8,5 +8,6 @@ public enum ConfigProperties {
     FAILED_EACH_STEPS_SCREENSHOTS,
     SKIPPED_EACH_STEPS_SCREENSHOTS,
     WAIT,
-    RETRY
+    RETRY,
+    RETRY_FAILED_TESTS
 }

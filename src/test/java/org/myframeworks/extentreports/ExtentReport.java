@@ -32,4 +32,16 @@ public class ExtentReport {
             ExtentReportManager.setExtentTest(extentReports.createTest(testName));
         }
     }
+
+    public static void addAuthor(String[] authors) {
+        for (String author : authors) {
+            ExtentReportManager.getExtent().assignAuthor(author);
+        }
+    }
+
+    public static void addCategory(String[] categories) {
+        for (String category : categories) {
+            ExtentReportManager.getExtent().assignCategory(category);
+        }
+    }
 }

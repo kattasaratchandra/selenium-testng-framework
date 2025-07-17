@@ -3,6 +3,7 @@ package org.myframeworks.test;
 import org.myframeworks.driver.Driver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import java.util.Map;
 
 
 /**
@@ -18,8 +19,9 @@ public abstract class BaseTest {
 
 
     @BeforeMethod
-    protected void initDriver() {
-            Driver.initDriver();
+    protected void initDriver(Object[] data) {
+        Map<String, String> map = (Map<String, String>)data[0];
+        Driver.initDriver(map.get("Browser"));
     }
 
     @AfterMethod
