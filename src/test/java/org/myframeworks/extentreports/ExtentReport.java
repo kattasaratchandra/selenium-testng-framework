@@ -3,6 +3,7 @@ package org.myframeworks.extentreports;
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import org.myframeworks.constants.FrameworkConstants;
+import org.myframeworks.enums.CategoryType;
 
 import java.util.Objects;
 
@@ -30,6 +31,18 @@ public class ExtentReport {
     public  static void createTest(String testName) {
         if (extentReports != null) {
             ExtentReportManager.setExtentTest(extentReports.createTest(testName));
+        }
+    }
+
+    public static void addAuthor(String[] authors) {
+        for (String author : authors) {
+            ExtentReportManager.getExtent().assignAuthor(author);
+        }
+    }
+
+    public static void addCategory(CategoryType[] categories) {
+        for (CategoryType category : categories) {
+            ExtentReportManager.getExtent().assignCategory(category.toString());
         }
     }
 }

@@ -11,9 +11,7 @@ public class AnnotationTransformer implements IAnnotationTransformer {
     @Override
     public void transform(ITestAnnotation annotation, Class testClass, Constructor testConstructor, Method testMethod) {
                 annotation.setRetryAnalyzer(RetryFailedMethods.class);
-                if(testMethod.getName().equalsIgnoreCase("loginLogoutTest")) {
-                    annotation.setDataProvider("testData");
-                    annotation.setDataProviderClass(DataProviderUtils.class);
-                }
+                annotation.setDataProvider("testData");
+                annotation.setDataProviderClass(DataProviderUtils.class);
     }
 }

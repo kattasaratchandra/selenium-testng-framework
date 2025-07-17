@@ -1,5 +1,6 @@
 package org.myframeworks.listeners;
 
+import org.myframeworks.annotations.FrameWorkAnnotation;
 import org.myframeworks.extentreports.ExtentLogger;
 import org.myframeworks.extentreports.ExtentReport;
 import org.testng.ITestContext;
@@ -11,9 +12,11 @@ import java.util.Arrays;
 public class listeners implements ITestListener{
     @Override
     public void onTestStart(ITestResult result) {
-        ExtentReport.createTest(result.getMethod().getMethodName());
-        ExtentLogger.description(result.getMethod().getDescription());
-
+        ExtentReport.createTest(result.getMethod().getDescription());
+        ExtentReport.addAuthor(result.getMethod().getConstructorOrMethod().getMethod().
+                getAnnotation(FrameWorkAnnotation.class).author());
+        ExtentReport.addCategory(result.getMethod().getConstructorOrMethod().getMethod().
+                getAnnotation(FrameWorkAnnotation.class).category());
     }
 
     @Override
