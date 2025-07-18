@@ -70,4 +70,11 @@ execution results and logs.
 ### Troubleshooting Tips
 
 - Check the logs in the `Extent-output` directory for detailed error information.
-- Ensure the Excel file paths and property files are correctly configured.
+
+### Contributing
+
+We welcome contributions! Please follow these steps:
+
+1. Fork the repository.
+2. Create a new branch for your feature or bug fix.
+3. Submit a pull request with a detailed description of your changes.
