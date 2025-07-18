@@ -10,6 +10,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+/**
+ * Utility class for reading tabular test data from Excel files.
+ * Returns list of hashmaps with key as column header and value as cell value.
+ */
 public class ReadExcelUtils {
 
     public static List<HashMap<String, String>> getDataFromExcel(String filePath, String sheetName) throws IOException {
@@ -17,7 +21,7 @@ public class ReadExcelUtils {
             XSSFSheet sheet = xssfWorkbook.getSheet(sheetName);
             int rowNum = sheet.getPhysicalNumberOfRows();
             int colNum = sheet.getRow(0).getPhysicalNumberOfCells();
-             List<HashMap<String, String>> objects = new ArrayList<>();
+            List<HashMap<String, String>> objects = new ArrayList<>();
             for (int i = 1; i < rowNum; i++) {
                 HashMap<String, String> dataMap = new HashMap<>();
                 for (int j = 0; j < colNum; j++) {

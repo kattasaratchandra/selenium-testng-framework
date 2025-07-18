@@ -3,8 +3,10 @@ package org.myframeworks.pages;
 import org.myframeworks.enums.WaitStrategy;
 import org.openqa.selenium.By;
 
-
-public class OrangeHRMLoginPage extends BasePage{
+/**
+ * This class represents the login page of the OrangeHRM application.
+ */
+public class OrangeHRMLoginPage extends BasePage {
 
     private final By usernameField = By.name("username");
     private final By passwordField = By.name("password");

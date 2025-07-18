@@ -9,17 +9,14 @@ import org.testng.annotations.Test;
 import java.util.HashMap;
 
 /**
- * Test class for OrangeHRM login and logout functionality.
- * Uses data-driven testing with data provided from an Excel sheet.
+ * Test class for OrangeHRM application.
+ * Contains tests for login/logout functionality and home page title verification.
+ * Uses TestNG framework for test execution and assertions.
+ * Tests are annotated with @FrameWorkAnnotation for categorization and author tracking.
+ * Tests are parameterized with test data from an Excel file.
  */
-public final class OrangeHRMTests extends BaseTest{
+public final class OrangeHRMTests extends BaseTest {
 
-    /**
-     * Test method for login and logout functionality in OrangeHRM.
-     * Uses data from the DataProvider 'testData'.
-     *
-     * @param testData HashMap containing test data with keys 'username' and 'password'
-     */
     @FrameWorkAnnotation(author = {"sharath"}, category = {CategoryType.SMOKE})
     @Test()
     public void loginLogoutTest(HashMap<String, String> testData) {
@@ -36,7 +33,7 @@ public final class OrangeHRMTests extends BaseTest{
                 .isNotNull();
     }
 
-    @FrameWorkAnnotation(author = { "sharath"}, category = {CategoryType.SMOKE})
+    @FrameWorkAnnotation(author = {"sharath"}, category = {CategoryType.SMOKE})
     @Test()
     public void homePageTitleTest(HashMap<String, String> testData) {
         OrangeHRMLoginPage loginPage = new OrangeHRMLoginPage();

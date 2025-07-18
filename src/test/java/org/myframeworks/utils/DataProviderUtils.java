@@ -11,14 +11,19 @@ import java.util.List;
 
 import static org.myframeworks.utils.ReadExcelUtils.getDataFromExcel;
 
+/**
+ * Utility class for providing test data from an Excel file.
+ * This class uses TestNG's DataProvider to supply test data for tests.
+ * It reads the test data from an Excel file and filters it based on the test case name and execution flag.
+ */
 public class DataProviderUtils {
 
     private static List<HashMap<String, String>> testDataList = new ArrayList<>();
 
     @DataProvider(name = "testData")
-    public static  Object[] testData(Method method) throws IOException {
+    public static Object[] testData(Method method) throws IOException {
         String testName = method.getName();
-        if(testDataList.isEmpty()) {
+        if (testDataList.isEmpty()) {
             // Load test data from Excel only once
             testDataList = getDataFromExcel(FrameworkConstants.getTestData(), "TestsRunner");
         }

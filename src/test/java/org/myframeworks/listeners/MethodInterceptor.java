@@ -18,16 +18,6 @@ import java.util.List;
  */
 public class MethodInterceptor implements IMethodInterceptor {
 
-    /**
-     * Intercepts the list of test methods before execution and filters them based on the "Execute" flag
-     * and test case name specified in an external Excel file. Also sets the test description from Excel.
-     *
-     * @param methods List of IMethodInstance objects representing test methods to be executed.
-     * @param context The ITestContext for the current test run.
-     * @return A filtered list of IMethodInstance objects that should be executed.
-     * @throws IllegalArgumentException if the methods list is null.
-     * @throws RuntimeException if there is an error reading the Excel file or if test data is missing.
-     */
     @Override
     public List<IMethodInstance> intercept(List<IMethodInstance> methods, ITestContext context) {
         // Null check for methods parameter
@@ -66,7 +56,6 @@ public class MethodInterceptor implements IMethodInterceptor {
         } catch (IllegalArgumentException | IOException e) {
             throw new RuntimeException("Error reading test data from Excel file", e);
         }
-
         return result;
     }
 }

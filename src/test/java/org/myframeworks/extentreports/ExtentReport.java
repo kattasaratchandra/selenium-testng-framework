@@ -7,11 +7,16 @@ import org.myframeworks.enums.CategoryType;
 
 import java.util.Objects;
 
+/**
+ * ExtentReport class provides methods to initialize, create, and manage Extent Reports.
+ * It includes methods for creating tests, adding authors, and assigning categories.
+ */
 public class ExtentReport {
+
     private static ExtentReports extentReports;
 
-    public static void initReports(){
-        if(Objects.isNull(extentReports)) {
+    public static void initReports() {
+        if (Objects.isNull(extentReports)) {
             extentReports = new ExtentReports();
             ExtentSparkReporter extentSparkReporter = new ExtentSparkReporter(FrameworkConstants.getExtentReportPath());
             extentReports.attachReporter(extentSparkReporter);
@@ -28,7 +33,7 @@ public class ExtentReport {
         }
     }
 
-    public  static void createTest(String testName) {
+    public static void createTest(String testName) {
         if (extentReports != null) {
             ExtentReportManager.setExtentTest(extentReports.createTest(testName));
         }
