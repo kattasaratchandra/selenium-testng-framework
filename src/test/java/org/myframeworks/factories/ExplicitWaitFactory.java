@@ -11,13 +11,19 @@ import java.time.Duration;
 
 import static org.myframeworks.driver.DriverManager.getDriver;
 
+/**
+ * Factory class for creating explicit waits for web elements.
+ * Provides methods to wait for elements based on different strategies
+ * such as CLICKABLE, PRESENCE, VISIBLE, and NONE.
+ * Utilizes WebDriverWait and ExpectedConditions for reliable element interaction.
+ */
 public class ExplicitWaitFactory {
 
     private ExplicitWaitFactory() {
         // Private constructor to prevent instantiation
     }
 
-    public static WebElement waitForElement(By by, WaitStrategy waitStrategy){
+    public static WebElement waitForElement(By by, WaitStrategy waitStrategy) {
         switch (waitStrategy) {
             case CLICKABLE:
                 return new WebDriverWait(getDriver(), Duration.ofSeconds(FrameworkConstants.getExplicitWait()))

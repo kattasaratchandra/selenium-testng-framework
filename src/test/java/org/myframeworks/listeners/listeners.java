@@ -9,7 +9,13 @@ import org.testng.ITestResult;
 
 import java.util.Arrays;
 
-public class listeners implements ITestListener{
+/**
+ * Listeners class implements ITestListener to handle test events.
+ * It logs test start, success, failure, and skip events using ExtentLogger and ExtentReport.
+ * It also initializes and flushes the ExtentReport at the start and end of the test context.
+ * This class is used to enhance test reporting and logging in the framework.
+ */
+public class listeners implements ITestListener {
     @Override
     public void onTestStart(ITestResult result) {
         ExtentReport.createTest(result.getMethod().getDescription());
@@ -21,19 +27,19 @@ public class listeners implements ITestListener{
 
     @Override
     public void onTestSuccess(ITestResult result) {
-        ExtentLogger.pass(result.getMethod().getMethodName() + ": " + "passed" , true );
+        ExtentLogger.pass(result.getMethod().getMethodName() + ": " + "passed", true);
     }
 
     @Override
     public void onTestFailure(ITestResult result) {
-        ExtentLogger.fail(result.getMethod().getMethodName() + " is failed" ,  true);
+        ExtentLogger.fail(result.getMethod().getMethodName() + " is failed", true);
         ExtentLogger.fail(result.getThrowable().toString());
         ExtentLogger.fail(Arrays.toString(result.getThrowable().getStackTrace()));
     }
 
     @Override
     public void onTestSkipped(ITestResult result) {
-        ExtentLogger.skip(result.getMethod().getMethodName() + ": " + "skipped", true  );
+        ExtentLogger.skip(result.getMethod().getMethodName() + ": " + "skipped", true);
 
     }
 
