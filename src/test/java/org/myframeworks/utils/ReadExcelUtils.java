@@ -28,8 +28,8 @@ public class ReadExcelUtils {
                 objects.add(dataMap);
             }
             return objects;
-        } catch (InvalidFormatException e) {
-            throw new RuntimeException(e);
+        } catch (InvalidFormatException | IOException e) {
+            throw new RuntimeException("Error reading Excel file: " + filePath, e);
         }
     }
 }

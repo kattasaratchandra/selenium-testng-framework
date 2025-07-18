@@ -7,7 +7,6 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
-import java.util.logging.Logger;
 
 /**
  * Utility class for reading properties from a configuration file.
@@ -17,10 +16,6 @@ import java.util.logging.Logger;
  * </p>
  */
 public final class ReadPropertyFileUtils {
-    /**
-     * Logger for logging information and errors.
-     */
-    private static final Logger LOGGER = Logger.getLogger(ReadPropertyFileUtils.class.getName());
 
     /**
      * Private constructor to prevent instantiation.
@@ -42,10 +37,8 @@ public final class ReadPropertyFileUtils {
     static {
         try (FileInputStream fileInputStream = new FileInputStream(FrameworkConstants.getConfigFilePath())) {
             properties.load(fileInputStream);
-                LOGGER.info("Properties loaded successfully from: " + FrameworkConstants.getConfigFilePath());
         } catch (IOException e) {
-            LOGGER.severe("Error loading properties file: " + e.getMessage());
-            throw new RuntimeException(e);
+            throw new RuntimeException("Error loading properties file: " + FrameworkConstants.getConfigFilePath(), e.getCause());
         }
 
         // Populate the propertiesMap with entries from the Properties object.
