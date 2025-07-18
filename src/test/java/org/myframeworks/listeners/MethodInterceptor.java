@@ -63,7 +63,7 @@ public class MethodInterceptor implements IMethodInterceptor {
                     }
                 }
             }
-        } catch (IOException e) {
+        } catch (IllegalArgumentException | IOException e) {
             throw new RuntimeException("Error reading test data from Excel file", e);
         }
 

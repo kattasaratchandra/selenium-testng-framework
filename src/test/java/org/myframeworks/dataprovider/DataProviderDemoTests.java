@@ -174,7 +174,7 @@ public class DataProviderDemoTests {
      * Uses java.util.Properties to load the file and convert it to a map for test consumption.
      */
     @DataProvider(name = "propertiesDataProvider")
-    public Object[] propertiesDataProvider() throws IOException {
+    public Object[] propertiesDataProvider() {
         try(FileInputStream fileInputStream = new FileInputStream(FrameworkConstants.getTestDataProperties())) {
             Properties properties = new Properties();
             properties.load(fileInputStream);
@@ -183,6 +183,8 @@ public class DataProviderDemoTests {
                 data.put(key, properties.getProperty(key));
             }
             return new Object[]{data};
+        }catch (Exception e) {
+            throw new RuntimeException("Error reading properties file: " + FrameworkConstants.getTestDataProperties(), e);
         }
     }
 

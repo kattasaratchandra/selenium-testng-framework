@@ -123,3 +123,9 @@ IAnnotation transformer and IRetry analyzer:
 
 Custom Annotations:
 - created custom annotations for category and author.
+
+Exception Handling:
+- For File checked exceptions, we have used try-catch blocks to handle exceptions and throw run time
+  exception with the clear message.
+- This ensures the test execution terminates as and then the exception occurs, avoid throwing unchecked exceptions
+  i.e. null pointer exception, which can lead to confusion in debugging
