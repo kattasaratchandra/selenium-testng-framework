@@ -129,3 +129,14 @@ Exception Handling:
   exception with the clear message.
 - This ensures the test execution terminates as and then the exception occurs, avoid throwing unchecked exceptions
   i.e. null pointer exception, which can lead to confusion in debugging
+
+Driver Factory:
+- created a DriverFactory class to create and return the WebDriver instance based on the browser type
+  and run mode.
+- run mode we can configure as local or remote. if configured as remote, it will create a remote WebDriver instance
+  using the RemoteWebDriver class and the URL of the Selenium Grid hub. we use docker container for the remote
+  execution
+
+Dockerized Selenium Grid to run tests:
+- Dockerized Selenium Grid is used to run tests in parallel across multiple browsers and versions.
+- created yaml file to define the Selenium Grid configuration, including browser versions and capabilities.

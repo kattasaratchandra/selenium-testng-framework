@@ -9,5 +9,6 @@ public enum ConfigProperties {
     SKIPPED_EACH_STEPS_SCREENSHOTS,
     WAIT,
     RETRY,
-    RETRY_FAILED_TESTS
+    RETRY_FAILED_TESTS,
+    RUN_MODE
 }
