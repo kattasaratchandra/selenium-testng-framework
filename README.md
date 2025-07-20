@@ -55,8 +55,6 @@ data-driven testing, Maven integration, dynamic TestNG method interception, and 
 
 - Simplified browser management with `DriverFactory` supporting local and remote (Dockerized Selenium Grid) run modes.
 
----
-
 ## Setup Instructions
 
 ### Prerequisites
