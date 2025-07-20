@@ -5,24 +5,57 @@ data-driven testing, Maven integration, dynamic TestNG method interception, and 
 
 ## Features
 
-- **Excel-based Test Runner**: Configure test execution directly in an Excel file. Tests will only run if the "Execute"
-  field is set to "Yes".
-- **Data-driven Testing**: Easily configure test data using Excel files for parameterized test execution.
-- **Maven Integration**: Seamless build and dependency management.
-- **Dynamic TestNG Method Interception**: Modify TestNG methods dynamically before execution based on the Excel test
-  runner.
-- **Custom Utilities**: Utilities for reading property files and parsing Excel data.
-- **Comprehensive Reporting**: Detailed reports and logs generated after test execution.
-- **Dynamic Description Updates**: TestNG method descriptions can be updated dynamically based on values in the Excel
-  file.
-- **Custom TestNG Annotations**: Extend and enhance TestNG functionality with user-defined annotations
-- **Screenshot Configuration via `config.properties`**: Automatically capture screenshots of test failures or other
-  specified events as configured in `config.properties`.
-- **Retry Failed Tests via `config.properties`**: Configure retry logic for failed tests using properties in the
-  `config.properties` file. This ensures test robustness by automatically re-executing failed tests.
-- **Data Provider and Retry Class Configuration with Annotation Transformer**: Use TestNG's `IAnnotationTransformer` to
-  dynamically configure the `DataProvider` and retry logic for tests. This allows for flexible and efficient test
-  execution based on runtime conditions.
+### Centralized WebDriver Management
+
+- Abstracted WebDriver setup and teardown in the `BaseTest` class using TestNG annotations.
+- Thread-safe WebDriver management with `DriverManager` leveraging `ThreadLocal<WebDriver>` for parallel test execution.
+
+### Dynamic Execution Modes
+
+- Configurable `runmode` in `config.properties` to switch between **local execution** and **remote execution** using
+  Dockerized Selenium Grid.
+
+### Dockerized Selenium Grid Integration
+
+- Enabled parallel test execution across multiple browsers and versions using Docker Compose.
+- YAML-based configuration for flexible browser and capability management.
+
+### Data Providers
+
+- Supports multiple data sources for TestNG tests:
+    - **Excel-based data**: Tabular test data in array or map format for external test input.
+    - **JSON-based data**: Structured data management for tests.
+    - **Properties file-based data**: Key-value-driven configuration tests.
+    - **Hardcoded method-specific data**: Custom data per test method.
+
+### Retry and Annotation Transformers
+
+- Automatic retries for failed tests using `IRetryAnalyzer`.
+- Runtime annotation modifications via `IAnnotationTransformer` for dynamic test configurations.
+
+### Extent Reports
+
+- Dynamic report file names based on current date and time.
+- Embedded screenshots using Base64 encoding for improved visualization.
+- Logs exceptions and stack traces for failed tests with fine-grained control over screenshot inclusion.
+
+### Custom Annotations
+
+- Introduced `@Category` and `@Author` annotations for better test categorization and traceability.
+
+### Exception Handling
+
+- Clear and actionable runtime exceptions for robust debugging of file errors and runtime failures.
+
+### IMethodInterceptor
+
+- Dynamic control over test execution order, filtering, and repetition.
+
+### Driver Factory
+
+- Simplified browser management with `DriverFactory` supporting local and remote (Dockerized Selenium Grid) run modes.
+
+---
 
 ## Setup Instructions
 
@@ -30,12 +63,14 @@ data-driven testing, Maven integration, dynamic TestNG method interception, and 
 
 - Java (Version 8 or higher)
 - Maven (Version 3.6 or higher)
+- Docker (Version 20.10 or higher)
 
 ### Installation Steps
 
 1. Clone the repository:
    ```bash
    git clone https://github.com/kattasaratchandra/selenium-testng-framework.git
+   ```
 2. Navigate to the project directory:
    ```bash
    cd selenium-testng-framework
@@ -44,12 +79,38 @@ data-driven testing, Maven integration, dynamic TestNG method interception, and 
    ```bash
    mvn install
     ```
-4. Run the tests:
+4. Dockerize Selenium Grid setup:
+    1. Start the Selenium Grid using Docker Compose:
+       ```bash
+        docker-compose up -d
+        ```
+    2. Verify the Docker containers are running:
+       ```bash
+       docker ps
+       ```
+    3. Verify the Selenium Grid is running by accessing the Grid Console:
+       ````
+       http://localhost:4444/wd/hub
+       ````
+
+### Running the tests
+
+Update the `config.properties` file to set the `runmode`:
+
+1. For remote execution (Dockerized Selenium Grid):
+   ```
+   runmode=remote
+   ```
+2. For local execution:
+   ```
+   runmode=local
+   ```
+3. Execute the tests using Maven:
    ```bash
    mvn clean test
-    ```
-
-## Reports
+   ```
+    
+### Reports
 
 After running the tests, the reports will be generated in the `Extent-output` directory. Navigate there to view the test
 execution results and logs.
