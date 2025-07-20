@@ -20,7 +20,7 @@ public abstract class BaseTest {
     @BeforeMethod
     protected void initDriver(Object[] data) {
         Map<String, String> map = (Map<String, String>) data[0];
-        Driver.initDriver(map.get("Browser"));
+        Driver.initDriver(map.get("Browser"), map.get("version"));
     }
 
     @AfterMethod

@@ -20,7 +20,7 @@ public class DataProviderUtils {
 
     private static List<HashMap<String, String>> testDataList = new ArrayList<>();
 
-    @DataProvider(name = "testData")
+    @DataProvider(name = "testData", parallel = true)
     public static Object[] testData(Method method) throws IOException {
         String testName = method.getName();
         if (testDataList.isEmpty()) {

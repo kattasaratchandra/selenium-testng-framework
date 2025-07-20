@@ -7,9 +7,7 @@ import org.testng.IMethodInterceptor;
 import org.testng.ITestContext;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 /**
  * Interceptor class that modifies the list of test methods before execution based on conditions
@@ -34,7 +32,15 @@ public class MethodInterceptor implements IMethodInterceptor {
                 throw new RuntimeException("Test data from Excel file is null");
             }
 
+            Set<String> addedMethods = new HashSet<>();
+
             for (IMethodInstance method : methods) {
+                String methodName = method.getMethod().getMethodName();
+
+                // Skip if we've already added this method
+                if (addedMethods.contains(methodName)) {
+                    continue;
+                }
                 for (HashMap<String, String> executionList : list) {
                     if (executionList == null) {
                         continue; // Skip null entries in the list
@@ -50,6 +56,8 @@ public class MethodInterceptor implements IMethodInterceptor {
                             method.getMethod().setDescription(description); // Update method description
                         }
                         result.add(method);
+                        addedMethods.add(methodName); // Track added methods to avoid duplicates
+                        break; // No need to check further for this method
                     }
                 }
             }
