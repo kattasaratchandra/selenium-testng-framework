@@ -19,60 +19,59 @@ import java.util.Objects;
 public class DriverFactory {
 
     public static WebDriver getDriver(String browser, String version) {
-        WebDriver driver = null;
         String runMode = ReadPropertyFileUtils.getProperty(ConfigProperties.RUN_MODE.name());
-        if (browser.equalsIgnoreCase("chrome")) {
-            if (runMode.equalsIgnoreCase("remote")) {
-                // Initialize remote Chrome driver
-                ChromeOptions options = new ChromeOptions();
-                if (!Objects.equals(version, "latest")) {
-                    options.setBrowserVersion(version);
-                }
-                try {
-                    URL url = URI.create("http://localhost:4444/wd/hub").toURL();
-                    driver = new RemoteWebDriver(url, options);
-                } catch (MalformedURLException e) {
-                    throw new RuntimeException(e);
-                }
-            } else {
-                driver = new ChromeDriver();
-            }
-        } else if (browser.equalsIgnoreCase("firefox")) {
-            if (runMode.equalsIgnoreCase("remote")) {
 
-                // Initialize remote Firefox driver
-                FirefoxOptions options = new FirefoxOptions();
-                if (!Objects.equals(version, "latest")) {
-                    options.setBrowserVersion(version);
-                }
-                try {
-                    URL url = URI.create("http://localhost:4444/wd/hub").toURL();
-                    driver = new RemoteWebDriver(url, options);
-                } catch (MalformedURLException e) {
-                    throw new RuntimeException(e);
-                }
-            } else {
-                // Initialize local Firefox driver
-                driver = new FirefoxDriver();
-            }
-        } else if (browser.equalsIgnoreCase("edge")) {
-            if (runMode.equalsIgnoreCase("remote")) {
-                // Initialize remote Edge driver
-                EdgeOptions options = new EdgeOptions();
-                if (!Objects.equals(version, "latest")) {
-                    options.setBrowserVersion(version);
-                }
-                try {
-                    URL url = URI.create("http://localhost:4444/wd/hub").toURL();
-                    driver = new RemoteWebDriver(url, options);
-                } catch (MalformedURLException e) {
-                    throw new RuntimeException(e);
-                }
-            } else {
-                // Initialize local Edge driver
-                driver = new EdgeDriver();
-            }
+        if ("remote".equalsIgnoreCase(runMode)) {
+            return createRemoteDriver(browser, version);
+        } else {
+            return createLocalDriver(browser);
         }
-        return driver;
+    }
+
+    private static WebDriver createRemoteDriver(String browser, String version) {
+        try {
+            URL url = URI.create(ReadPropertyFileUtils.getProperty(ConfigProperties.SELENIUM_GRID_URL.name())).toURL();
+
+            switch (browser.toLowerCase()) {
+                case "chrome":
+                    ChromeOptions chromeOptions = new ChromeOptions();
+                    if (!Objects.equals(version, "latest")) {
+                        chromeOptions.setBrowserVersion(version);
+                    }
+                    return new RemoteWebDriver(url, chromeOptions);
+
+                case "firefox":
+                    FirefoxOptions firefoxOptions = new FirefoxOptions();
+                    if (!Objects.equals(version, "latest")) {
+                        firefoxOptions.setBrowserVersion(version);
+                    }
+                    return new RemoteWebDriver(url, firefoxOptions);
+
+                case "edge":
+                    EdgeOptions edgeOptions = new EdgeOptions();
+                    if (!Objects.equals(version, "latest")) {
+                        edgeOptions.setBrowserVersion(version);
+                    }
+                    return new RemoteWebDriver(url, edgeOptions);
+
+                default:
+                    throw new IllegalArgumentException("Unsupported browser: " + browser);
+            }
+        } catch (MalformedURLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private static WebDriver createLocalDriver(String browser) {
+        switch (browser.toLowerCase()) {
+            case "chrome":
+                return new ChromeDriver();
+            case "edge":
+                return new EdgeDriver();
+            case "firefox":
+                return new FirefoxDriver();
+            default:
+                throw new IllegalArgumentException("Unsupported browser: " + browser);
+        }
     }
 }

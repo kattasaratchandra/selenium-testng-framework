@@ -15,7 +15,7 @@ import java.util.Arrays;
  * It also initializes and flushes the ExtentReport at the start and end of the test context.
  * This class is used to enhance test reporting and logging in the framework.
  */
-public class listeners implements ITestListener {
+public class TestListener implements ITestListener {
     @Override
     public void onTestStart(ITestResult result) {
         ExtentReport.createTest(result.getMethod().getDescription());

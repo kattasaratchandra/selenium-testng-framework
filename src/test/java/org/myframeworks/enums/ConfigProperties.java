@@ -2,7 +2,6 @@ package org.myframeworks.enums;
 
 public enum ConfigProperties {
     URL,
-    BROWSER,
     OVERRIDE_REPORTS,
     PASSED_EACH_STEPS_SCREENSHOTS,
     FAILED_EACH_STEPS_SCREENSHOTS,
@@ -10,5 +9,6 @@ public enum ConfigProperties {
     WAIT,
     RETRY,
     RETRY_FAILED_TESTS,
-    RUN_MODE
+    RUN_MODE,
+    SELENIUM_GRID_URL
 }
