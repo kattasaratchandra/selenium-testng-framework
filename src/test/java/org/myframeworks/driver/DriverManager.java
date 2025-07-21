@@ -2,6 +2,8 @@ package org.myframeworks.driver;
 
 import org.openqa.selenium.WebDriver;
 
+import java.util.Objects;
+
 
 public final class DriverManager {
     /**
@@ -11,7 +13,8 @@ public final class DriverManager {
      * 4. The unload method is used to remove the WebDriver instance from the ThreadLocal variable.
      */
 
-    private DriverManager(){}
+    private DriverManager() {
+    }
 
     private static final ThreadLocal<WebDriver> threadLocalDriver = ThreadLocal.withInitial(() -> null);
 
@@ -20,7 +23,9 @@ public final class DriverManager {
     }
 
     static void setDriver(WebDriver driver) {
-        threadLocalDriver.set(driver);
+        if (Objects.nonNull(driver)) {
+            threadLocalDriver.set(driver);
+        }
     }
 
     static void unload() {

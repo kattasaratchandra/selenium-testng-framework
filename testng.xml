@@ -2,7 +2,7 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite name="Suite" parallel="methods" thread-count="6" data-provider-thread-count="6">
     <listeners>
-        <listener class-name="org.myframeworks.listeners.listeners"/>
+        <listener class-name="org.myframeworks.listeners.TestListener"/>
         <listener class-name="org.myframeworks.listeners.MethodInterceptor"/>
         <listener class-name="org.myframeworks.listeners.AnnotationTransformer"/>
     </listeners>

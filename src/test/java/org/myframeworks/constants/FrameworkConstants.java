@@ -14,7 +14,8 @@ public final class FrameworkConstants {
     /**
      * Private constructor to prevent instantiation.
      */
-    private FrameworkConstants(){}
+    private FrameworkConstants() {
+    }
 
 
     private static final String RESOURCE_PATH = System.getProperty("user.dir") + "/src/test/resources/";
@@ -35,16 +36,14 @@ public final class FrameworkConstants {
         return extentReportPath;
     }
 
-    private static String createExtentReport(){
-        if (ReadPropertyFileUtils.getProperty(ConfigProperties.OVERRIDE_REPORTS.name().toLowerCase()).equalsIgnoreCase("no")){
+    private static String createExtentReport() {
+        if (ReadPropertyFileUtils.getProperty(ConfigProperties.OVERRIDE_REPORTS.name()).equalsIgnoreCase("no")) {
             extentReportPath = EXTENT_REPORTS_FOLDER_PATH + "ExtentReport.html";
-        }
-        else {
+        } else {
             extentReportPath = EXTENT_REPORTS_FOLDER_PATH + "ExtentReport_" + System.currentTimeMillis() + ".html";
         }
         return extentReportPath;
     }
-
 
 
     public static String getConfigFilePath() {
@@ -55,6 +54,7 @@ public final class FrameworkConstants {
         String waitValue = ReadPropertyFileUtils.getProperty(ConfigProperties.WAIT.name());
         return Integer.parseInt(waitValue);
     }
+
     public static String getTestData() {
         return TEST_DATA;
     }
@@ -70,6 +70,7 @@ public final class FrameworkConstants {
     public static String getJsonConfigFilePath() {
         return JSON_CONFIG_FILE_PATH;
     }
+
     public static String getTestDataCsv() {
         return TEST_DATA_CSV;
     }

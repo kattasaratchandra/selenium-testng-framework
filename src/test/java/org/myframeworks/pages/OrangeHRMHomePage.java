@@ -20,5 +20,4 @@ public class OrangeHRMHomePage extends BasePage {
         clickElement(logoutLink, WaitStrategy.CLICKABLE, "Logout Link");
         return new OrangeHRMLoginPage();
     }
-
 }

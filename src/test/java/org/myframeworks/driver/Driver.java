@@ -24,7 +24,7 @@ public final class Driver {
         }
         WebDriver localDriver = getDriver();
         localDriver.manage().window().maximize();
-        localDriver.get(ReadPropertyFileUtils.getProperty(ConfigProperties.URL.name().toLowerCase()));
+        localDriver.get(ReadPropertyFileUtils.getProperty(ConfigProperties.URL.name()));
     }
 
     public static void quitDriver() {
